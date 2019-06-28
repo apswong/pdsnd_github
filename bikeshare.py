@@ -16,15 +16,15 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    # get user input for city (chicago, new york city, washington)
     city=input('Enter the city (chicago, new york city or washington): ')
 
     # get user input for month (all, january, february, ... , june)
+    month=input('Enter the month (all or january, february, ..., june): ')
 
-    month=input('Enter the month (all, january, february, ..., june): ')
     # get user input for day of week (all, monday, tuesday, ... sunday)
 
-    day=input('Enter the day of the week (all, monday, tuesday, ... sunday): ')
+    day=input('Enter the day of the week (all or monday, tuesday, ... sunday): ')
     print('-'*40)
     return city, month, day
 
@@ -46,7 +46,7 @@ def load_data(city, month, day):
     df['day_of_week']=df['Start Time'].dt.weekday_name
     df['hour']=df['Start Time'].dt.hour
     if month!='all':
-        months=['january','feruary','march','april','may','june']
+        months=['january','february','march','april','may','june']
         month=months.index(month)+1
         df=df[df['month']==month]
     if day!='all':
@@ -60,15 +60,15 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    # TO DO: display the most common month
+    # display the most common month
     popular_month=df['month'].mode()[0]
     print('Most popular month: ', popular_month)
 
-    # TO DO: display the most common day of week
+    # display the most common day of week
     popular_week=df['day_of_week'].mode()[0]
     print('Most popular day of week: ', popular_week)
 
-    # TO DO: display the most common start hour
+    # display the most common start hour
     popular_hour=df['hour'].mode()[0]
     print('Most popular hour: ', popular_hour)
 
@@ -82,15 +82,15 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # TO DO: display most commonly used start station
+    # display most commonly used start station
     popular_startstation=df['Start Station'].mode()[0]
     print('Most popular start station: ', popular_startstation)
 
-    # TO DO: display most commonly used end station
+    # display most commonly used end station
     popular_endstation=df['End Station'].mode()[0]
     print('Most popular end station: ', popular_endstation)
 
-    # TO DO: display most frequent combination of start station and end station trip
+    # display most frequent combination of start station and end station trip
     popular_startend=df[['Start Station', 'End Station']].mode()
     print('Most popular start end combo: ', popular_startend)
 
@@ -104,11 +104,11 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    # TO DO: display total travel time
+    # display total travel time
     total_traveltime=df['Trip Duration'].sum()
     print('Total travel time: ', total_traveltime)
 
-    # TO DO: display mean travel time
+    # display mean travel time
     mean_traveltime=df['Trip Duration'].mean()
     print('Mean travel time: ', mean_traveltime)
 
@@ -122,15 +122,15 @@ def user_stats(df):
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
-    # TO DO: Display counts of user types
+    # Display counts of user types
     usertypes=df['User Type'].value_counts()
     print('Count user type: ', usertypes)
 
-    # TO DO: Display counts of gender
+    # Display counts of gender
     gender=df['Gender'].value_counts()
     print('Count gender: ', gender)
 
-    # TO DO: Display earliest, most recent, and most common year of birth
+    # Display earliest, most recent, and most common year of birth
     earliest=df['Birth Year'].min()
     print('Earliest year of birth: ', earliest)
     latest=df['Birth Year'].max()
